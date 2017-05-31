@@ -1,6 +1,6 @@
 {
   "name": "@calzoneman/jsli",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "Logging interface for node.js",
   "main": "index.js",
   "scripts": {
