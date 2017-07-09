@@ -1,8 +1,9 @@
 import { LogLevel } from './loglevel';
+import { sprintf } from 'sprintf-js';
 
 export class Logger {
-    constructor(level, loggerName) {
-        this.level = level || LogLevel.INFO;
+    constructor(loggerName, level = LogLevel.INFO) {
+        this.level = level;
         this.loggerName = loggerName || null;
     }
 
@@ -42,8 +43,16 @@ export class Logger {
         return LogLevel.FATAL.shouldLogAtLevel(this.level);
     }
 
-    log(level, message, ...args) {
+    emitMessage(level, message) {
         // To be implemented by the implementation class
+    }
+
+    log(level, message, ...args) {
+        if (args.length > 0) {
+            message = sprintf(message, ...args);
+        }
+
+        this.emitMessage(level, message);
     }
 
     trace(message, ...args) {
